@@ -5,7 +5,7 @@ function SideBar(){
         <div className="sideBar">
             <button>Map View</button>
             <button>Recent Reports</button>
-            <button>Submit a Report</button>
+            <button>About</button>
         </div>
     );
 }
