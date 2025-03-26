@@ -6,7 +6,7 @@ function MapComponent() {
   const position = [23.588, 58.3829];
 
   return (
-    <MapContainer center={[21.4735, 55.9754]} zoom={7}>
+    <MapContainer center={[21.4735, 55.9754]} zoom={18}>
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
