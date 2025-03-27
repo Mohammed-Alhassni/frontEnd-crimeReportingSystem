@@ -37,10 +37,10 @@ function MapComponent() {
         {crimes.map((crime)=>(
           <Marker key={crime.id} position={[crime.latitude, crime.longitude]}>
             <Popup>
-              <h3>type: {crime.crime_type}</h3>
-              <h5>status: {crime.report_status}</h5>
-              <p>details: {crime.report_details}</p>
-              <p>Reported at: {crime.report_date_time}</p>
+              <p><em>{crime.report_details}</em></p>
+              <p><b>Type: </b>{crime.crime_type}</p>
+              <p><b>Status: </b>{crime.report_status}</p>
+              <p><b>Reported at: </b>{crime.report_date_time}</p>
             </Popup>
           </Marker>
         ))}
