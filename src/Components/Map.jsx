@@ -26,9 +26,25 @@ function MapComponent() {
     fetchCrimes();
 
   }, []);
+
+  function formatDateTime(dateTimeString) {
+    if (!dateTimeString) return "Invalid date";
+
+    const [year, month, day, hour, minute] = dateTimeString.split("-").map(Number);
+    const date = new Date(year, month - 1, day, hour, minute);
+    const formattedDate = date.toLocaleDateString("en-GB"); 
+    const formattedTime = date.toLocaleTimeString("en-GB", { 
+      hour12: true, 
+      hour: '2-digit', 
+      minute: '2-digit', 
+      second: '2-digit'
+  });
+
+    return [formattedDate, formattedTime];
+}
     
   return (
-      <MapContainer center={muscat} zoom={13}>
+      <MapContainer center={muscat} zoom={9}>
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -37,10 +53,11 @@ function MapComponent() {
         {crimes.map((crime)=>(
           <Marker key={crime.id} position={[crime.latitude, crime.longitude]}>
             <Popup>
-              <p><em>{crime.report_details}</em></p>
+              <p><b>Details: </b><em>{crime.report_details}</em></p>
               <p><b>Type: </b>{crime.crime_type}</p>
               <p><b>Status: </b>{crime.report_status}</p>
-              <p><b>Reported at: </b>{crime.report_date_time}</p>
+              <p><b>Reported at:</b> <br/><em>Date: </em>{formatDateTime(crime.report_date_time)[0]}
+              <br/><em>Time: </em>{formatDateTime(crime.report_date_time)[1]}</p>
             </Popup>
           </Marker>
         ))}
