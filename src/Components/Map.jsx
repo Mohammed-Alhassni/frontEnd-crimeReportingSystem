@@ -1,9 +1,19 @@
 import  React, { useEffect, useState }  from 'react';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import L from 'leaflet';
 import "leaflet/dist/leaflet.css";
+import icon from 'leaflet/dist/images/marker-icon.png';
+import iconShadow from 'leaflet/dist/images/marker-shadow.png';
 import { db, ref, get } from '../firebaseConfig';
 
 function MapComponent() {
+  let DefaultIcon = L.icon({
+    iconUrl: icon,
+    shadowUrl: iconShadow
+  });
+
+  L.Marker.prototype.options.icon = DefaultIcon;
+
   const muscat= [23.5880, 58.3829]
   const [crimes, setCrimes] = useState([]);
 
