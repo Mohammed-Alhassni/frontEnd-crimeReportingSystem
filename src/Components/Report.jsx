@@ -1,5 +1,5 @@
 function Report(){
-    return <div>hi</div>
+    return <div>Submit a report</div>
 }
 
 
