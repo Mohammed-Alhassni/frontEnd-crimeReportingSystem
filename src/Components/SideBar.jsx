@@ -7,7 +7,7 @@ function SideBar(){
         <div className="sideBar">
             <div><Link id to="/Map">Reported Crimes</Link></div>
             <div><Link to="/List">Crimes List</Link></div>
-            <div><Link to="/SubmitReport">Report a Crime</Link></div>
+            <div><Link to="/ReportSubmission">Report a Crime</Link></div>
             <div><Link to="/About">About</Link></div>
         </div>
     );

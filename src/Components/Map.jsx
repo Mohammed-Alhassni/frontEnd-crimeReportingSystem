@@ -6,7 +6,7 @@ import icon from 'leaflet/dist/images/marker-icon.png';
 import iconShadow from 'leaflet/dist/images/marker-shadow.png';
 import { db, ref, get } from '../firebaseConfig';
 
-function MapComponent() {
+function Map() {
   let DefaultIcon = L.icon({
     iconUrl: icon,
     shadowUrl: iconShadow
@@ -75,4 +75,4 @@ function MapComponent() {
   );
 }
 
-export default MapComponent;
+export default Map;
