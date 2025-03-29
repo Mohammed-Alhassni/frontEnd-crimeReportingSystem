@@ -9,7 +9,10 @@ import { db, ref, get } from '../firebaseConfig';
 function Map() {
   let DefaultIcon = L.icon({
     iconUrl: icon,
-    shadowUrl: iconShadow
+    shadowUrl: iconShadow,
+    iconSize: [25, 41],
+    iconAnchor: [12, 41],
+    popupAnchor:  [0, -40],
   });
 
   L.Marker.prototype.options.icon = DefaultIcon;

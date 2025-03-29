@@ -14,25 +14,21 @@ function ReportSubmit() {
   const [longitude, setLongitude]= useState("");
   const [latitude, setLatitude]= useState("");
 
+  let DefaultIcon = L.icon({
+    iconUrl: icon,
+    shadowUrl: iconShadow,
+    iconSize: [25, 41],
+    iconAnchor: [12, 41],
+  });
+
+  L.Marker.prototype.options.icon = DefaultIcon;
+
   useEffect(()=>{
       if (pickedLocation!= null){
         setLongitude(pickedLocation.lng)
         setLatitude(pickedLocation.lat)
       }
   }, [pickedLocation])
-
-  let DefaultIcon = L.icon({
-    iconUrl: icon,
-    shadowUrl: iconShadow
-  });
-  
-  const customIcon = new L.Icon({
-  iconUrl: "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon.png",
-  iconSize: [25, 41],
-  iconAnchor: [12, 41],
-  });
-  
-  L.Marker.prototype.options.icon = DefaultIcon;
   
   function LocationPicker({ setPickedLocation }) {
     useMapEvents({
@@ -110,7 +106,7 @@ function ReportSubmit() {
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
               />
               <LocationPicker setPickedLocation={setPickedLocation} />
-              {pickedLocation && <Marker position={pickedLocation} icon={customIcon} />}      
+              {pickedLocation && <Marker position={pickedLocation}/>}      
       </MapContainer>
       <button type="submit">Submit</button>
     </form>
