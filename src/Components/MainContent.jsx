@@ -1,5 +1,4 @@
 import Map from './Map';
-import CrimeList from './CrimeList';
 import ReportSubmit from './ReportSubmit';
 import About from './About';
 import '../styles/MainContent.css';
@@ -11,7 +10,6 @@ function MainContent(){
             <Routes>
                 <Route path='/' element={<Map/>}/>
                 <Route path='/Map' element={<Map/>}/>
-                <Route path='/List' element={<CrimeList/>}/>
                 <Route path='/ReportSubmission' element={<ReportSubmit/>}/>
                 <Route path='/About' element={<About/>}/>
             </Routes>
