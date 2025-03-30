@@ -1,8 +1,9 @@
 import '../styles/Header.css';
 import { useMediaQuery } from 'react-responsive';
+import { useAppContext } from '../functionalities/AppContext';
 
 function Header(){
-    const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
+    const {isMobile} = useAppContext();
 
     return (
         <div className="Header">
