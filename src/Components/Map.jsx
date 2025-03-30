@@ -1,22 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
-import L from 'leaflet';
 import "leaflet/dist/leaflet.css";
-import icon from 'leaflet/dist/images/marker-icon.png';
-import iconShadow from 'leaflet/dist/images/marker-shadow.png';
 import { db, ref, get } from '../firebaseConfig';
+import DefaultIcon from '../functionalities/DefaultIcon';
+import { formatDateTime } from '../functionalities/formatDateTime';
 
 function Map() {
-  let DefaultIcon = L.icon({
-    iconUrl: icon,
-    shadowUrl: iconShadow,
-    iconSize: [25, 41],
-    iconAnchor: [12, 41],
-    popupAnchor:  [0, -40],
-  });
-
-  L.Marker.prototype.options.icon = DefaultIcon;
-
   const muscat = [23.5880, 58.3829];
   const [crimes, setCrimes] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
@@ -53,21 +42,6 @@ function Map() {
     );
   }, [searchTerm, crimes]);
 
-  function formatDateTime(dateTimeString) {
-    if (!dateTimeString) return "Invalid date";
-
-    const [year, month, day, hour, minute] = dateTimeString.split("-").map(Number);
-    const date = new Date(year, month - 1, day, hour, minute);
-    const formattedDate = date.toLocaleDateString("en-GB"); 
-    const formattedTime = date.toLocaleTimeString("en-GB", { 
-      hour12: true, 
-      hour: '2-digit', 
-      minute: '2-digit', 
-      second: '2-digit'
-    });
-
-    return [formattedDate, formattedTime];
-  }
 
   return (
     <div>
@@ -84,7 +58,7 @@ function Map() {
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
         {filteredCrimes.map((crime) => (
-          <Marker key={crime.id} position={[crime.latitude, crime.longitude]}>
+          <Marker key={crime.id} position={[crime.latitude, crime.longitude]} icon={DefaultIcon}>
             <Popup>
               <p><b>Details: </b><em>{crime.report_details}</em></p>
               <p><b>Type: </b>{crime.crime_type}</p>

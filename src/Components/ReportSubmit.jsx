@@ -1,27 +1,17 @@
 import  React, {useState, useEffect }  from 'react';
 import { MapContainer, TileLayer, useMapEvents, Marker } from 'react-leaflet';
-import L from 'leaflet';
 import "leaflet/dist/leaflet.css";
-import icon from 'leaflet/dist/images/marker-icon.png';
-import iconShadow from 'leaflet/dist/images/marker-shadow.png';
 import { db, set, push, ref} from '../firebaseConfig';
+import DefaultIcon from '../functionalities/DefaultIcon';
 
 function ReportSubmit() {
+  
   const [pickedLocation, setPickedLocation] = useState(null);
   const [details, setDetails]= useState("");
   const [crimeType, setcrimeType]= useState("");
   const [id, setId]= useState("");
   const [longitude, setLongitude]= useState("");
   const [latitude, setLatitude]= useState("");
-
-  let DefaultIcon = L.icon({
-    iconUrl: icon,
-    shadowUrl: iconShadow,
-    iconSize: [25, 41],
-    iconAnchor: [12, 41],
-  });
-
-  L.Marker.prototype.options.icon = DefaultIcon;
 
   useEffect(()=>{
       if (pickedLocation!= null){
@@ -39,33 +29,33 @@ function ReportSubmit() {
   return null;
   }
   
-   const updateCrimes = async (e) => {
-        e.preventDefault();
-        const currentTime= new Date();
-        const formattedTime = currentTime.toLocaleString("en-CA", {
-          year: "numeric",
-          month: "2-digit",
-          day: "2-digit",
-          hour: "2-digit",
-          minute: "2-digit",
-          hour12: false,
-        }).replace(", ", "-").replace(":", "-");
+  const updateCrimes = async (e) => {
+      e.preventDefault();
+      const currentTime= new Date();
+      const formattedTime = currentTime.toLocaleString("en-CA", {
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit",
+        hour: "2-digit",
+        minute: "2-digit",
+        hour12: false,
+      }).replace(", ", "-").replace(":", "-");
 
-        const crimesRef = push(ref(db, 'crimes'));  
-        set(crimesRef, {
-          crime_type: crimeType,
-          id: id,
-          latitude: latitude,
-          longitude: longitude,
-          report_date_time: formattedTime,
-          report_details: details,
-          report_status: "Pending"
-        }).then(()=>{
-          alert("Crime Submitted")
-        }).catch((error)=>{
-          console.error('Error writing data: ', error);
-        })
-      };
+      const crimesRef = push(ref(db, 'crimes'));  
+      set(crimesRef, {
+        crime_type: crimeType,
+        id: id,
+        latitude: latitude,
+        longitude: longitude,
+        report_date_time: formattedTime,
+        report_details: details,
+        report_status: "Pending"
+      }).then(()=>{
+        alert("Crime Submitted")
+      }).catch((error)=>{
+        console.error('Error writing data: ', error);
+      })
+    };
 
   return (
     <form onSubmit={updateCrimes}>
@@ -106,7 +96,7 @@ function ReportSubmit() {
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
               />
               <LocationPicker setPickedLocation={setPickedLocation} />
-              {pickedLocation && <Marker position={pickedLocation}/>}      
+              {pickedLocation && <Marker position={pickedLocation} icon={DefaultIcon}/>}      
       </MapContainer>
       <button type="submit">Submit</button>
     </form>

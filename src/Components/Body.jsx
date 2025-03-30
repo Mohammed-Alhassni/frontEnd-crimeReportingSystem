@@ -2,13 +2,14 @@ import { useMediaQuery } from 'react-responsive';
 import MainContent from './MainContent';
 import SideBar from './SideBar';
 import '../styles/Body.css';
+import { useAppContext } from '../functionalities/AppContext';
 
 function Body(){
-    const isDesktop = useMediaQuery({ query: '(min-width: 768px)' });
+    const {isMobile} = useAppContext();
 
     return (
         <div className="mainBody">
-            {isDesktop && <SideBar/>}   
+            {!isMobile && <SideBar/>}   
             <MainContent/>
         </div>
     );
