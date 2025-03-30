@@ -1,6 +1,8 @@
 import '../styles/Header.css';
-import { useMediaQuery } from 'react-responsive';
+import ThemeToggle from './ThemeToggle';
 import { useAppContext } from '../functionalities/AppContext';
+import DropdownMenu from './DropdownMenu';
+
 
 function Header(){
     const {isMobile} = useAppContext();
@@ -8,7 +10,7 @@ function Header(){
     return (
         <div className="Header">
             <h2>Dash Board</h2>
-            {isMobile? <div>Place Holder Mobile</div>: <div>Place Holder Desktop</div>}
+            {isMobile? <DropdownMenu/>: <ThemeToggle/>}
         </div>
     );
 }
