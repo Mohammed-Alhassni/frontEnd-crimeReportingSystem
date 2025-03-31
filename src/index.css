@@ -3,8 +3,8 @@
   line-height: 1.5;
   font-weight: 400;
 
-  --bg-color: white;
-  --text-color: black;
+  --bg-color: #F8F9FA;
+  --text-color: #1E1E2E;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -13,8 +13,8 @@
 }
 
 .dark {
-  --bg-color: #121212;
-  --text-color: white;
+  --bg-color: #1E1E2E;
+  --text-color: #CDD6F4;
 }
 
 body {

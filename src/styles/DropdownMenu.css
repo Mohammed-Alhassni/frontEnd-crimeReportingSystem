@@ -5,10 +5,11 @@
     display: inline-block;
     z-index: 1000; 
     padding: 30px 30px;
+    background-color:#EAEAEA;
 }
 
 .dropdown-button {
-    background-color: #757575;
+    background-color: #D6336C;
     color: white;
     border: none;
     cursor: pointer;
