@@ -1,8 +1,27 @@
 .sideBar {
     display: flex;
     flex-direction: column;
-    justify-content: start;
+    gap: 10px;
+    width: 200px;
+    height: 100vh;
+    padding: 20px;
+    padding-top: 80px;
 }
-.sideBar div {
-    margin: 10px 5px 25px 5px;
+
+.sideBar a {
+    display: block;
+    color: white;
+    background-color: #6a0dad;
+    text-decoration: none;
+    padding: 12px 20px;
+    border-radius: 5px;
+    text-align: center;
+    font-weight: bold;
+    margin: 30px;
+    transition: color 0.3s ease;
+}
+
+.sideBar a:hover {
+    color: #4b0082;
+    text-decoration: underline;
 }

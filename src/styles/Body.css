@@ -1,7 +1,7 @@
 .mainBody {
     padding: 3vh 3vw;
-    height: 85vh;
+    height: 70vh;
     width: 90vw;
     display: flex;
-    column-gap: 10%;
+    column-gap: 5%;
 }
