@@ -1,11 +1,8 @@
 .sideBar {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: start;
 }
 .sideBar div {
     margin: 10px 5px 25px 5px;
-    height: 8vh;
-    width: 15vw;
-    text-align: center;
 }
