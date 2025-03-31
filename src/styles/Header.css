@@ -1,4 +1,6 @@
 .Header {
+    width: 95vw;
+    height: 15vh;
     top: 0;
     display: flex;
     justify-content: space-between;

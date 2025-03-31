@@ -1,4 +1,3 @@
-import { useMediaQuery } from 'react-responsive';
 import MainContent from './MainContent';
 import SideBar from './SideBar';
 import '../styles/Body.css';

@@ -1,5 +1,8 @@
-/* sizing of map container*/
+.MainContent {
+    flex:1;
+}
+
 .leaflet-container {
-    height: 70vh;
+    height: 60vh;
     width: 70vw;
 }
