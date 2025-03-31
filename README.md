@@ -1,12 +1,29 @@
-# React + Vite
+# CodeStacker Challenge
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Overview
+The **CodeStacker Challenge FrontEnd challenge** is to create website to show crimes on the map and report crimes with interactive interface. 
 
-Currently, two official plugins are available:
+## Technologies Used
+- **using vite** for react.js.
+- **Leaflet.js**: For integrating an interactive map with custom markers and layers.
+- **Firebase**: For deployment and hosting.
+- **Git/Github** for version control.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
+- Responsive design for desktop and mobile views.
+- Interactive map powered by **Leaflet.js** with customizable features.
+- User-friendly interface with night and light mode.
+- Hosted and deployed on **Firebase** for real-time access.
 
-## Expanding the ESLint configuration
+## How to run the code ?
+- clone the repo.
+- In terminal run "npm install" to install dependencies.
+- .env is needed to accesss the firebase project (assuming you created a firebase hosting project and set up realtime database).
+- "npm run dev" to run locally, "npm run build" to create the build. (the build will be generated inside "dist" folder).
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+
+## How to deploy?
+-run "firebase init"
+-configure for hosting and link your firebase account using the cli.
+-public folder is the build folder (which should be "dist").
+-after creating the build file using "npm run build", now you can deploy the it using "firebase deploy" command.
