@@ -1,9 +1,11 @@
+import '../styles/map.css';
 import React, { useEffect, useState } from 'react';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import "leaflet/dist/leaflet.css";
 import { db, ref, get } from '../firebaseConfig';
 import DefaultIcon from '../functionalities/DefaultIcon';
 import { formatDateTime } from '../functionalities/formatDateTime';
+
 
 function Map() {
   const muscat = [23.5880, 58.3829];

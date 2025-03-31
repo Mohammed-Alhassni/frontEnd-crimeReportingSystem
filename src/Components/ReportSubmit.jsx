@@ -4,15 +4,17 @@ import { MapContainer, TileLayer, useMapEvents, Marker } from 'react-leaflet';
 import "leaflet/dist/leaflet.css";
 import { db, set, push, ref} from '../firebaseConfig';
 import DefaultIcon from '../functionalities/DefaultIcon';
+import {useAppContext} from '../functionalities/AppContext';
 
 function ReportSubmit() {
-  
+  const {isMobile}= useAppContext();
   const [pickedLocation, setPickedLocation] = useState(null);
   const [details, setDetails]= useState("");
   const [crimeType, setcrimeType]= useState("");
   const [id, setId]= useState("");
   const [longitude, setLongitude]= useState("");
   const [latitude, setLatitude]= useState("");
+  const [showMapPopup, setShowMapPopup] = useState(false);
 
   useEffect(()=>{
       if (pickedLocation!= null){
@@ -88,14 +90,35 @@ function ReportSubmit() {
       </div>
 
       <div className='mapContainer'>
-        <MapContainer center={[23.5880, 58.3829]} zoom={9} style={{height: "40vh", width: "40vw", margin: "4%"}}>
+        {isMobile && <button type="button" onClick={() => setShowMapPopup(true)}>Pick Location on Map</button>}
+
+        {!isMobile  &&
+         <MapContainer center={[23.5880, 58.3829]} zoom={9}>
                 <TileLayer
                   attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                   url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                 />
                 <LocationPicker setPickedLocation={setPickedLocation} />
                 {pickedLocation && <Marker position={pickedLocation} icon={DefaultIcon}/>}      
-        </MapContainer>
+        </MapContainer>}
+
+        {showMapPopup && 
+          <div className="modal">
+            <div className="modal-content">
+
+              <button className="close-button" onClick={() => setShowMapPopup(false)}>✖</button>
+
+              <MapContainer center={[23.5880, 58.3829]} zoom={9} style={{ height: "60vh", width: "100%" }}>
+                <TileLayer
+                  attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                  url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                />
+                <LocationPicker setPickedLocation={setPickedLocation} />
+                {pickedLocation && <Marker position={pickedLocation} icon={DefaultIcon} />}
+              </MapContainer>
+
+            </div>
+          </div>}
       </div>
 
       <div className='submitButton'>
