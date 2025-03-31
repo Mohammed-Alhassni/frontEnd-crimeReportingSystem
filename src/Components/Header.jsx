@@ -8,9 +8,12 @@ function Header(){
     const {isMobile} = useAppContext();
 
     return (
-        <div className="Header">
-            <h2>Dash Board</h2>
-            {isMobile? <DropdownMenu/>: <ThemeToggle/>}
+        <div>
+            <div className="Header">
+                <h2>Dash Board</h2>
+                {!isMobile && <ThemeToggle/>}
+            </div>
+            {isMobile && <DropdownMenu/>}
         </div>
     );
 }
