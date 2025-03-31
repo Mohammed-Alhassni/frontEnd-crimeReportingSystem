@@ -4,7 +4,7 @@ const ThemeToggle = () => {
     const { isDarkMode, toggleTheme } = useAppContext();
 
     return (
-        <button onClick={toggleTheme} style={{ padding: "10px", cursor: "pointer" }}>
+        <button className="toggleButton" onClick={toggleTheme} style={{cursor: "pointer" }}>
             {isDarkMode ? "🌙 Dark Mode" : "☀️ Light Mode"}
         </button>
     );

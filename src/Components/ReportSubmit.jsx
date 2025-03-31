@@ -1,3 +1,4 @@
+import '../styles/ReportSubmit.css';
 import  React, {useState, useEffect }  from 'react';
 import { MapContainer, TileLayer, useMapEvents, Marker } from 'react-leaflet';
 import "leaflet/dist/leaflet.css";
@@ -60,45 +61,46 @@ function ReportSubmit() {
   return (
     <form onSubmit={updateCrimes}>
 
-      <label for="details">Details: </label>
-      <input required type="text" id="details" name="details" value={details} onChange={(e)=> setDetails(e.target.value)} />
+      <div>
+        <label for="details">Details: </label>
+        <input required type="text" id="details" name="details" value={details} onChange={(e)=> setDetails(e.target.value)} />
+        <label for="crimeType">Crime Type: </label>
+        <select required type="text" id="crimeType" name="crimeType" value={crimeType} onChange={(e)=> setcrimeType(e.target.value)} >
+        <option selected disabled value="">--Please choose an option--</option>
+          <option value="Assault">Assault</option>
+          <option value="Robbery">Robbery</option>
+          <option value="Homicide">Homicide</option>
+          <option value="Kidnapping">Kidnapping</option>
+        </select>
+      </div>
 
-      <br/>
+      <div>
+        <label for="ID">National ID: </label>
+        <input required type="number" id="ID" name="ID" value={id} onChange={(e)=> setId(e.target.value)} />
+      </div>
 
-      <label for="crimeType">Crime Type: </label>
-      <select required type="text" id="crimeType" name="crimeType" value={crimeType} onChange={(e)=> setcrimeType(e.target.value)} >
-      <option selected disabled value="">--Please choose an option--</option>
-        <option value="Assault">Assault</option>
-        <option value="Robbery">Robbery</option>
-        <option value="Homicide">Homicide</option>
-        <option value="Kidnapping">Kidnapping</option>
-      </select>
+      <div>
+        <label for="longitude">Location: </label>
+        <label for="latitude">Latitude </label>
+        <input required type="number" id="latitude" name="latitude" value={latitude} onChange={(e)=> setLatitude(e.target.value)} />
+        <label for="longitude">Longitude </label>
+        <input required type="number" id="longitude" name="longitude" value={longitude} onChange={(e)=> setLongitude(e.target.value)} />
+      </div>
 
-      <br/>
+      <div className='mapContainer'>
+        <MapContainer center={[23.5880, 58.3829]} zoom={9} style={{height: "40vh", width: "40vw", margin: "4%"}}>
+                <TileLayer
+                  attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                  url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                />
+                <LocationPicker setPickedLocation={setPickedLocation} />
+                {pickedLocation && <Marker position={pickedLocation} icon={DefaultIcon}/>}      
+        </MapContainer>
+      </div>
 
-      <label for="ID">National ID: </label>
-      <input required type="number" id="ID" name="ID" value={id} onChange={(e)=> setId(e.target.value)} />
-
-      <br/>
-      
-      <label for="longitude">Location: </label>
-
-      <label for="latitude">Latitude </label>
-      <input required type="number" id="latitude" name="latitude" value={latitude} onChange={(e)=> setLatitude(e.target.value)} />
-
-      <label for="longitude">Longitude </label>
-      <input required type="number" id="longitude" name="longitude" value={longitude} onChange={(e)=> setLongitude(e.target.value)} />
-
-      <br/>
-      <MapContainer center={[23.5880, 58.3829]} zoom={9} style={{height: "40vh", width: "40vw", margin: "4%"}}>
-              <TileLayer
-                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-              />
-              <LocationPicker setPickedLocation={setPickedLocation} />
-              {pickedLocation && <Marker position={pickedLocation} icon={DefaultIcon}/>}      
-      </MapContainer>
-      <button type="submit">Submit</button>
+      <div className='submitButton'>
+        <button type="submit">Submit</button>
+      </div>
     </form>
   );
 }

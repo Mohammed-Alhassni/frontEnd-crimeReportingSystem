@@ -45,13 +45,14 @@ function Map() {
 
   return (
     <div>
-      <input 
-        type="text" 
-        placeholder="Search by type, date, or ID" 
-        value={searchTerm} 
-        onChange={(e) => setSearchTerm(e.target.value)}
-        style={{ width: "98%", padding: "8px", marginBottom: "10px" }}
-      />
+      <div className='searchInput'>
+        <input 
+          type="text" 
+          placeholder="Search by type, date, or ID" 
+          value={searchTerm} 
+          onChange={(e) => setSearchTerm(e.target.value)}
+        />
+      </div>
       <MapContainer center={muscat} zoom={9}>
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
