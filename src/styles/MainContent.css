@@ -4,33 +4,5 @@
     display: flex;
     flex:1;
     background: #aa42f5;
-}
-
-.searchInput {
-    display: flex;
     justify-content: center;
-    margin: 20px 0;
-}
-
-.searchInput input {
-    width: 60%;
-    max-width: 500px;
-    padding: 10px 15px;
-    border: 2px solid #ccc;
-    border-radius: 20px;
-    font-size: 16px;
-    outline: none;
-}
-
-.searchInput input:focus {
-    border-color: #6a0dad;
-}
-
-.leaflet-container {
-    margin: 20px;
-    width: 60vw;
-    height: 55vh;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
