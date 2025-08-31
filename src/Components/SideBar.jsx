@@ -8,7 +8,8 @@ function SideBar(){
     const {isMobile}=useAppContext();
     return (
         <div className="sideBar">
-            <div><Link id to="/Map">Crimes</Link></div>
+            <h2> DashBoard </h2>
+            <div><Link to="/Map">Crimes</Link></div>
             <div><Link to="/ReportSubmission">Report</Link></div>
             <div><Link to="/About">About</Link></div>
             {isMobile && <ThemeToggle/>}

@@ -1,13 +1,16 @@
-import Header from './Components/Header';
-import Body from './Components/Body';
+import HeaderMobile from './Components/HeaderMobile';
+import SideBar from './Components/SideBar';
+import MainContent from './Components/MainContent';
+import { useAppContext } from './functionalities/AppContext';
 
 
 function DashBoard(){
+    const {isMobile} = useAppContext();
 
     return (
         <>
-            <Header/>
-            <Body/>
+            {isMobile ? <HeaderMobile/> : <SideBar/>}
+            <MainContent/>
         </>
     );
 }
