@@ -23,8 +23,13 @@ body {
 }
 
 html, body {
-  height: 100vh;
   margin: 0;
   overflow: hidden; /* Prevents scrolling */
+  display: inline;
+}
+
+.dashboard-container {
   display: flex;
+  height: 100vh; /* Full viewport height */
+  width: 100%;
 }

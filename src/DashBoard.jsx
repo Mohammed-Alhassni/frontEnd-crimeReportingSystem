@@ -8,10 +8,10 @@ function DashBoard(){
     const {isMobile} = useAppContext();
 
     return (
-        <>
+        <div className="dashboard-container">
             {isMobile ? <HeaderMobile/> : <SideBar/>}
             <MainContent/>
-        </>
+        </div>
     );
 }
 

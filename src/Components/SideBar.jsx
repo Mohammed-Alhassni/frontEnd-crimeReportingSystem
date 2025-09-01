@@ -12,7 +12,7 @@ function SideBar(){
             <div><Link to="/Map">Crimes</Link></div>
             <div><Link to="/ReportSubmission">Report</Link></div>
             <div><Link to="/About">About</Link></div>
-            {isMobile && <ThemeToggle/>}
+            <ThemeToggle/>
         </div>
     );
 }

@@ -1,8 +1,21 @@
 .MainContent {
     height: 100%;
+    width: 70%;
+    display: flex;
+    flex:1;
+    background: #aa42f5;
+    justify-content: center;
+}
+
+@media (max-width: 768px) {
+    .MainContent {
+    position: fixed;
+    bottom: 0;
+    height: 90%;
     width: 100%;
     display: flex;
     flex:1;
     background: #aa42f5;
     justify-content: center;
+    }
 }
