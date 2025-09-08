@@ -80,6 +80,6 @@ Contributions are welcome! Please fork the repository, create a feature branch, 
 This project is licensed under the MIT License.
 
 ## Contact
-For questions or feedback, contact [Mohammed Alhassni](www.linkedin.com/in/mohammed-al-hassni-38a84b2b1) or open an issue on GitHub.
+For questions or feedback, contact [Mohammed Alhassni](https://www.linkedin.com/in/mohammed-al-hassni-38a84b2b1/) or open an issue on GitHub.
 
 
