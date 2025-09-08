@@ -1,93 +1,490 @@
-form {
+.report-form-container {
     width: 100%;
     height: 100%;
-    background: #aa42f5;
-    padding: 15px;
-    border-radius: 8px;
     display: flex;
-    flex-direction: column;
-    gap: 10px;
     justify-content: center;
+    align-items: flex-start;
+    padding: 0; /* Remove padding to match map page */
 }
 
-form div {
-    display: flex;
-    flex: 1;
-    justify-content: space-between;
-}
+form {
+    width: 100%;
+    max-width: 1200px; /* Increased from 800px for wider desktop form */
+    background: var(--bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-xl);
+    }
 
-
-.submitButton {
-    justify-content: center;
-}
-
-.mapContainer {
-    justify-content: center;
-}
-
-form label {
-    font-size: 14px;
-    font-weight: bold;
-}
-
-
-form input, select, button {
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    width: 150px;
-}
-
-
-.mapContainer .leaflet-container {
-    height: 40vh;
-    width: 40vw;
-    margin: 4%;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    z-index: 1103;
-}
-
-@media (max-width: 768px) {
-    form div {
-      flex-direction: column;
-      flex: 1;
-      align-items: center;
+/* Large desktop optimization */
+@media (min-width: 1200px) {
+    .report-form-container {
+        padding: 2rem 3rem; /* More padding on larger screens */
+    }
+    
+    form {
+        max-width: 1400px; /* Even wider on large screens */
+        padding: 2.5rem 3rem; /* More internal padding */
+    }
+    
+    .form-grid {
+        grid-template-columns: 1fr 1fr 1fr; /* 3 columns on very wide screens */
+        gap: 2rem; /* Larger gaps */
+    }
+    
+    .form-group.full-width {
+        grid-column: 1 / -1; /* Still span full width for full-width items */
     }
 }
 
+form {
+    width: 100%; /* Full width like map page */
+    max-width: none; /* Remove max-width constraint */
+    background: var(--bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-xl);
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    position: relative;
+    overflow: hidden;
+}
+
+form::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+}
+
+.form-header {
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.form-title {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--text-color);
+    margin: 0 0 0.5rem 0;
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.form-subtitle {
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+    margin: 0;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.form-group.full-width {
+    grid-column: 1 / -1;
+}
+
+.form-label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-color);
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.required-indicator {
+    color: var(--error-color);
+    font-size: 0.75rem;
+}
+
+.form-input,
+.form-select,
+.form-textarea {
+    width: 100%;
+    padding: 0.875rem 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    background: var(--bg-color);
+    color: var(--text-color);
+    font-size: 0.875rem;
+    transition: all 0.2s ease;
+    font-family: inherit;
+}
+
+.form-input:focus,
+.form-select:focus,
+.form-textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px var(--primary-light);
+}
+
+.form-input::placeholder,
+.form-textarea::placeholder {
+    color: var(--text-muted);
+}
+
+.form-textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.form-select {
+    cursor: pointer;
+}
+
+.map-container {
+    grid-column: 1 / -1;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+}
+
+.map-header {
+    text-align: center;
+}
+
+.map-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--text-color);
+    margin: 0 0 0.5rem 0;
+}
+
+.map-description {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    margin: 0;
+}
+
+.mapContainer .leaflet-container {
+    height: 40dvh; /* Dynamic viewport height for mobile */
+    height: 40vh; /* Fallback for older browsers */
+    width: 100%;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+    border: 1px solid var(--border-color);
+}
+
+/* Ensure Leaflet controls don't overlap with mobile header */
+.mapContainer .leaflet-control-zoom {
+    z-index: 800 !important; /* Lower than mobile header */
+}
+
+.mapContainer .leaflet-control-attribution {
+    z-index: 800 !important; /* Lower than mobile header */
+}
+
+.form-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-color);
+}
+
+.btn-submit {
+    background: linear-gradient(135deg, var(--success-color), #059669);
+    color: white;
+    border: none;
+    padding: 0.875rem 2rem;
+    border-radius: var(--radius-md);
+    font-weight: 600;
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow-md);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.btn-submit:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+.btn-submit:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.btn-reset {
+    background: var(--bg-secondary);
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+    padding: 0.875rem 1.5rem;
+    border-radius: var(--radius-md);
+    font-weight: 500;
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-reset:hover {
+    background: var(--bg-tertiary);
+    border-color: var(--border-hover);
+}
+
+/* Success/Error states */
+.form-message {
+    padding: 1rem;
+    border-radius: var(--radius-md);
+    font-size: 0.875rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.form-message.success {
+    background: rgba(16, 185, 129, 0.1);
+    border: 1px solid var(--success-color);
+    color: var(--success-color);
+}
+
+.form-message.error {
+    background: rgba(239, 68, 68, 0.1);
+    border: 1px solid var(--error-color);
+    color: var(--error-color);
+}
+
+/* Modal styles */
 .modal {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
-    background: white;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 1101;
+    z-index: 1050; /* Higher than mobile header and dropdown */
+    padding: 1rem;
+}
+
+/* Mobile modal adjustments */
+@media (max-width: 768px) {
+    .modal {
+        align-items: flex-start; /* Align to top instead of center */
+        padding-top: 6rem; /* Add space for mobile header */
+        padding-bottom: 2rem;
+    }
+    
+    .modal-content {
+        max-height: calc(100dvh - 8rem); /* Account for header and padding */
+        max-height: calc(100vh - 8rem); /* Fallback */
+    }
 }
 
 .modal-content {
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    width: 80%;
-    max-width: 600px;
+    background: var(--bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-xl);
+    width: 100%;
+    max-width: 500px;
+    max-height: 90dvh; /* Dynamic viewport height for mobile */
+    max-height: 90vh; /* Fallback for older browsers */
+    overflow-y: auto;
     position: relative;
-    z-index: 1102;
+    animation: modalSlideIn 0.3s ease;
 }
 
+.modal-header {
+    padding: 1.5rem 1.5rem 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.modal-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-color);
+    margin: 0;
+}
 
 .close-button {
-    position: absolute;
-    top: 2px;
-    right: 10px;
-    color: rgb(0, 0, 0);
-    font-size: 10px;
-    border-radius: 5px;
-    width: 50px;
-    height: 50;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    color: var(--text-secondary);
+    font-size: 1.25rem;
+    line-height: 1;
+}
+
+.close-button:hover {
+    background: var(--bg-tertiary);
+    border-color: var(--border-hover);
+    color: var(--text-color);
+}
+
+.modal-body {
+    padding: 1.5rem;
+}
+
+@keyframes modalSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+    .report-form-container {
+        padding: 0; /* No padding to match map page */
+        padding-bottom: calc(3rem + env(safe-area-inset-bottom)); /* Only bottom padding for mobile browser UI */
+    }
+    
+    form {
+        padding: 1.5rem 1rem; /* Only internal padding */
+        margin-bottom: 1rem; /* Extra bottom margin */
+    }
+    
+    .form-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .form-actions {
+        flex-direction: column;
+        padding-bottom: 1rem; /* Extra space at bottom */
+    }
+    
+    .btn-submit,
+    .btn-reset {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .mapContainer .leaflet-container {
+        height: 30dvh; /* Dynamic viewport height for mobile */
+        height: 30vh; /* Fallback for older browsers */
+        min-height: 250px; /* Ensure minimum usable height */
+    }
+    
+    form {
+        padding: 1.5rem;
+        margin-bottom: 1rem; /* Extra bottom margin */
+    }
+}
+
+@media (max-width: 480px) {
+    .modal {
+        padding-top: 7rem; /* More space for smaller screens */
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+    }
+    
+    .modal-content {
+        max-height: calc(100dvh - 9rem); /* Account for header and extra padding */
+        max-height: calc(100vh - 9rem); /* Fallback */
+    }
+    
+    .report-form-container {
+        padding: 0; /* No padding to match map page */
+        padding-bottom: calc(4rem + env(safe-area-inset-bottom)); /* Extra bottom padding for small screens */
+    }
+    
+    form {
+        padding: 1rem;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .form-title {
+        font-size: 1.5rem;
+    }
+    
+    .mapContainer .leaflet-container {
+        height: 25dvh; /* Dynamic viewport height for mobile */
+        height: 25vh; /* Fallback for older browsers */
+        min-height: 200px;
+    }
+    
+    /* Ensure map controls don't interfere with mobile header on small screens */
+    .mapContainer .leaflet-control-zoom {
+        z-index: 700 !important; /* Even lower on small screens */
+    }
+    
+    .mapContainer .leaflet-control-attribution {
+        z-index: 700 !important; /* Even lower on small screens */
+    }
+}
+
+/* Medium-large desktop optimization */
+@media (min-width: 1024px) and (max-width: 1199px) {
+    .report-form-container {
+        padding: 0; /* No padding to match map page */
+    }
+    
+    form {
+        padding: 2rem 2.5rem; /* Only internal padding */
+    }
+    
+    .form-grid {
+        gap: 1.75rem; /* Slightly larger gaps */
+    }
+}
+
+/* Large desktop optimization for wider forms */
+@media (min-width: 1200px) {
+    .report-form-container {
+        padding: 0; /* No padding to match map page */
+    }
+    
+    form {
+        padding: 2.5rem 3rem; /* Only internal padding */
+    }
+    
+    .form-grid {
+        grid-template-columns: 1fr 1fr 1fr; /* 3 columns on very wide screens */
+        gap: 2rem; /* Larger gaps */
+    }
+    
+    .form-group.full-width {
+        grid-column: 1 / -1; /* Still span full width for full-width items */
+    }
+    
+    .map-container {
+        padding: 2rem; /* More padding for map section */
+    }
 }

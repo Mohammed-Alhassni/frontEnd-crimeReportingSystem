@@ -1,21 +1,174 @@
 .MainContent {
-    height: 100%;
-    width: 70%;
+    flex: 1;
+    height: 100vh;
     display: flex;
-    flex:1;
-    background: #aa42f5;
-    justify-content: center;
+    flex-direction: column;
+    background: var(--bg-color);
+    position: relative;
+    overflow: hidden;
 }
 
+.MainContent::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 20% 50%, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(139, 92, 246, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 40% 80%, rgba(16, 185, 129, 0.05) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+.content-wrapper {
+    position: relative;
+    z-index: 1;
+    height: 100%;
+    overflow-y: auto;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.content-header {
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.page-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text-color);
+    margin: 0 0 0.5rem 0;
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.page-subtitle {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    margin: 0;
+}
+
+.content-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Loading states */
+.loading-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 200px;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.loading-spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid var(--border-color);
+    border-top: 3px solid var(--primary-color);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+.loading-text {
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Error states */
+.error-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 200px;
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+}
+
+.error-icon {
+    font-size: 3rem;
+    color: var(--error-color);
+}
+
+.error-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-color);
+    margin: 0;
+}
+
+.error-message {
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+    margin: 0;
+}
+
+/* Mobile responsive */
 @media (max-width: 768px) {
     .MainContent {
-    position: fixed;
-    bottom: 0;
-    height: 90%;
-    width: 100%;
-    display: flex;
-    flex:1;
-    background: #aa42f5;
-    justify-content: center;
+        position: fixed;
+        top: 5rem; /* Account for mobile header - increased spacing */
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: calc(100vh - 5rem);
+        /* Handle mobile browser UI hiding */
+        height: calc(100dvh - 5rem); /* Dynamic viewport height */
+        min-height: calc(100vh - 5rem); /* Fallback */
+    }
+    
+    .content-wrapper {
+        padding: 1.5rem 1rem 2rem; /* Added more top and bottom padding */
+        height: 100%;
+        overflow-y: auto;
+        /* Ensure content is accessible on mobile browsers */
+        padding-bottom: calc(2rem + env(safe-area-inset-bottom)); /* Account for mobile browser UI */
+    }
+    
+    .page-title {
+        font-size: 1.5rem;
+    }
+    
+    .content-header {
+        margin-bottom: 1.5rem; /* Increased spacing */
+    }
+    
+    .content-body {
+        flex: 1;
+        padding-bottom: 1rem; /* Extra bottom padding */
+    }
+}
+
+@media (max-width: 480px) {
+    .MainContent {
+        top: 5rem;
+        height: calc(100dvh - 5rem);
+        min-height: calc(100vh - 5rem);
+    }
+    
+    .content-wrapper {
+        padding: 1rem 0.75rem 2.5rem; /* More bottom padding for small screens */
+        padding-bottom: calc(2.5rem + env(safe-area-inset-bottom));
+    }
+    
+    .page-title {
+        font-size: 1.25rem;
     }
 }
